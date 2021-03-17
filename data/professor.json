@@ -1,0 +1,51 @@
+[{
+    "lastname": "Matty",
+    "surname": "Higgoe",
+    "email": "mhiggoe0@tumblr.com",
+    "password": 12345678,
+    "isConnected": true,
+    "occupation": {
+        "course": "Programmation",
+        "promotion": "Licence"
+    }
+  }, {
+    "lastname": "Weston",
+    "surname": "Reville",
+    "email": "wreville1@dyndns.org",
+    "password": 12345678,
+    "isConnected": true,
+    "occupation": {
+        "course": "Mathématique",
+        "promotion": "MBDS"
+    }
+  }, {
+    "lastname": "Latrina",
+    "surname": "Alwin",
+    "email": "lalwin2@cnet.com",
+    "password": 12345678,
+    "isConnected": true,
+    "occupation": {
+        "course": "Anglais",
+        "promotion": "Licence"
+    }
+  }, {
+    "lastname": "Dwight",
+    "surname": "Holgan",
+    "email": "dholgan3@delicious.com",
+    "password": 12345678,
+    "isConnected": true,
+    "occupation": {
+        "course": "Big Data",
+        "promotion": "MBDS"
+    }
+  }, {
+    "lastname": "Chad",
+    "surname": "Labbe",
+    "email": "clabbe4@house.gov",
+    "password": 12345678,
+    "isConnected": true,
+    "occupation": {
+        "course": "Web Design",
+        "promotion": "Licence"
+    }
+  }]

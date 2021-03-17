@@ -2,10 +2,13 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-const http = require('http');
-
-const dbConfig = require('./config/database');
+let http = require('http');
+let dbConfig = require('./config/database');
 let port = process.env.PORT || 3001;
+
+/* Routes import */
+let professorRoutes = require('./routes/professor');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
@@ -14,10 +17,10 @@ mongoose.connect(dbConfig.db, {
     useCreateIndex : true,
     useFindAndModify: false,
 }).then(() => {
-        console.log('Connected to database');
+      console.log('Connected to database');
     },
     error => {
-        console.log('Could not connect to databse : ' + error);
+      console.log('Could not connect to databse : ' + error);
     }
 )
 
@@ -35,9 +38,9 @@ app.use(bodyParser.json());
 
 
 // les routes
-const prefix = '/api';
+const prefix = '/api/';
 
-/* app.route(prefix + '/assignments')
+/*app.route(prefix + '/assignments')
   .get(assignment.getAssignments);
 
 app.route(prefix + '/assignments/:id')
@@ -49,8 +52,24 @@ app.route(prefix + '/assignments')
   .post(assignment.postAssignment)
   .put(assignment.updateAssignment);  */
 
+
+app.route(prefix + 'professors')
+  .post(professorRoutes.create)
+  .put(professorRoutes.update);
 // On démarre le serveur
 
+app.route(prefix + 'professor/:id')
+  .get(professorRoutes.getById);
+  
+app.route(prefix + 'professor/login')
+  .post(professorRoutes.login);
+
+
+app.route(prefix + 'professors')
+  .get(professorRoutes.getAll);
+
+app.route(prefix + 'professor/logout/:id')
+  .get(professorRoutes.logout);
 
 const server = http.createServer(app);
 server.listen(port,function () { 

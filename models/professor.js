@@ -13,16 +13,4 @@ let professorSchema = Schema({
     collection: 'professor'
 });
 
-professorSchema.methods.setPassword = function(password) { 
-// Creating a unique salt for a particular professor 
-    this.salt = crypto.randomBytes(16).toString('hex'); 
-    this.hash = crypto.pbkdf2Sync(password, this.salt,1000, 64, `sha512`).toString(`hex`); 
-    return this.hash;
-};
-
-professorSchema.methods.validPassword = function(password) { 
-    const hash = requireModel.crypto.pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(`hex`);
-    return this.hash === hash; 
-}; 
-
 module.exports = mongoose.model('Professor', professorSchema);

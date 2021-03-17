@@ -4,8 +4,8 @@ let Schema = mongoose.Schema;
 let publicationSchema = Schema({
     professor: { type: Schema.Types.ObjectId , ref: 'Professor'},
     message: String,
-    class: { type: Schema.Types.ObjectId , ref: 'Class'},
-    course: { type: Schema.Types.ObjectId , ref: 'Course'},
+    promotionName: String,
+    courseName: String,
     deadline: Date
 },{
     collection: 'publication'

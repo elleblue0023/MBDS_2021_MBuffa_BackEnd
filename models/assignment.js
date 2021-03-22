@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let AssignmentSchema = Schema({
+let assignmentSchema = Schema({
 	student: { type: Schema.Types.ObjectId, ref: 'Student'}, 
 	promotionName: String,
 	courseName: String,
@@ -14,4 +14,4 @@ let AssignmentSchema = Schema({
 	collection: 'assignment'
 });
 
-module.exports = mongoose.model('Assignment', AssignmentSchema);
+module.exports = mongoose.model('Assignment', assignmentSchema);

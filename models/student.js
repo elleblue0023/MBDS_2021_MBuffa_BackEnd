@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let StudentSchema = Schema({
+let studentSchema = Schema({
 	lastname: String,
 	surname: String, 
 	email: String,
@@ -12,4 +12,4 @@ let StudentSchema = Schema({
 	collection: 'student'
 });
 
-module.exports = mongoose.model('Student', StudentSchema);
+module.exports = mongoose.model('Student', studentSchema);

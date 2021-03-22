@@ -1,10 +1,10 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let CourseSchema = Schema({
+let courseSchema = Schema({
     name: String 
 },{
 	collection: 'course'
 });
 
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model('Course', courseSchema);

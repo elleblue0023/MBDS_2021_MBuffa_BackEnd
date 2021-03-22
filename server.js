@@ -8,6 +8,10 @@ let port = process.env.PORT || 3001;
 
 /* Routes import */
 let professorRoutes = require('./routes/professor');
+let courseRoutes = require('./routes/course');
+let promotionRoutes = require('./routes/promotion');
+let assignmentRoutes = require('./routes/assignment');
+let studentRoutes = require('./routes/student');
 
 
 mongoose.Promise = global.Promise;
@@ -53,10 +57,11 @@ app.route(prefix + '/assignments')
   .put(assignment.updateAssignment);  */
 
 
+
+//Partie Professeur
 app.route(prefix + 'professors')
   .post(professorRoutes.create)
   .put(professorRoutes.update);
-// On démarre le serveur
 
 app.route(prefix + 'professor/:id')
   .get(professorRoutes.getById);
@@ -70,6 +75,65 @@ app.route(prefix + 'professors')
 
 app.route(prefix + 'professor/logout/:id')
   .get(professorRoutes.logout);
+
+
+//Partie Cours
+app.route(prefix + 'courses')
+  .get(courseRoutes.getAll);
+
+app.route(prefix + 'courses/:id')
+  .get(courseRoutes.getById)
+  .delete(courseRoutes.delete);
+  
+app.route(prefix + 'courses')
+  .post(courseRoutes.create)
+  .put(courseRoutes.update);
+
+
+//Partie Promotion
+app.route(prefix + 'promotions')
+  .get(promotionRoutes.getAll);
+
+app.route(prefix + 'promotions/:id')
+  .get(promotionRoutes.getById)
+  .delete(promotionRoutes.delete);
+  
+app.route(prefix + 'promotions')
+  .post(promotionRoutes.create)
+  .put(promotionRoutes.update);
+
+
+//Partie Assignment
+app.route(prefix + 'assignments')
+  .get(assignmentRoutes.getAll);
+
+app.route(prefix + 'assignments/:id')
+  .get(assignmentRoutes.getById)
+  .delete(assignmentRoutes.delete);
+  
+app.route(prefix + 'assignments')
+  .post(assignmentRoutes.create)
+  .put(assignmentRoutes.update);
+
+
+//Partie Student
+app.route(prefix + 'students')
+  .post(studentRoutes.create)
+  .put(studentRoutes.update);
+
+app.route(prefix + 'students/:id')
+  .get(studentRoutes.getById);
+  
+app.route(prefix + 'students/login')
+  .post(studentRoutes.login);
+
+
+app.route(prefix + 'students')
+  .get(studentRoutes.getAll);
+
+app.route(prefix + 'students/logout/:id')
+  .get(studentRoutes.logout);
+
 
 const server = http.createServer(app);
 server.listen(port,function () { 

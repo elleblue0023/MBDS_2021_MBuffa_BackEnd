@@ -54,25 +54,26 @@ app.route(prefix + 'courses')
 app.route(prefix + 'promotions')
 .get(utilsRoutes.getAllPromotion);
 
-
-//Partie Professeur
-
-
-
+app.route(prefix + 'courses')
+.get(courseRoutes.getAll);
 
 /**--------------------------------------------
  *               PROFESSORS API
  *---------------------------------------------**/
 
-app.route(prefix + 'professor/login')
-  .post(professorRoutes.login);
+app.route(prefix + 'professors')
+  .post(professorRoutes.create)
+
+app.route(prefix + 'students')
+  .post(studentRoutes.create);
 
 app.use(jwt.verify);
 
+/**========================================================================
+ *                          NEED TO TOKEN TO ACCESS 
+ *========================================================================**/
 app.route(prefix + 'professors')
-  .put(professorRoutes.update)
-  .post(professorRoutes.create);
-
+  .put(professorRoutes.update);
 
 app.route(prefix + 'professors')
   .get(professorRoutes.getAll);
@@ -83,12 +84,12 @@ app.route(prefix + 'professor/:id')
 app.route(prefix + 'professor/logout/:id')
   .get(professorRoutes.logout);
 
+app.route(prefix + 'professor/login')
+  .post(professorRoutes.login);
 
-
-//Partie Cours
-app.route(prefix + 'courses')
-  .get(courseRoutes.getAll);
-
+/**--------------------------------------------
+ *               PROFESSORS API
+ *---------------------------------------------**/
 app.route(prefix + 'courses/:id')
   .get(courseRoutes.getById)
   .delete(courseRoutes.delete);
@@ -96,7 +97,6 @@ app.route(prefix + 'courses/:id')
 app.route(prefix + 'courses')
   .post(courseRoutes.create)
   .put(courseRoutes.update);
-
 
 //Partie Promotion
 app.route(prefix + 'promotions')
@@ -110,8 +110,22 @@ app.route(prefix + 'promotions')
   .post(promotionRoutes.create)
   .put(promotionRoutes.update);
 
+app.route(prefix + 'professor/publications')
+  .post(professorPublicationRoutes.create)
+  .get(professorPublicationRoutes.getAll);
 
-//Partie Assignment
+app.route(prefix + 'professor/current-publication/:id')
+  .get(professorPublicationRoutes.getById);
+
+app.route(prefix + 'professor/publications/professors')
+  .get(professorPublicationRoutes.findByProfessorId);
+
+app.route(prefix + 'professor')
+  .get(professorRoutes.currentProfessor);
+
+/**--------------------------------------------
+ *               ASSIGNMENTS API
+ *---------------------------------------------**/
 app.route(prefix + 'assignments')
   .get(assignmentRoutes.getAll);
 
@@ -124,9 +138,10 @@ app.route(prefix + 'assignments')
   .put(assignmentRoutes.update);
 
 
-//Partie Student
+/**--------------------------------------------
+ *               STUDENTS API
+ *---------------------------------------------**/
 app.route(prefix + 'students')
-  .post(studentRoutes.create)
   .put(studentRoutes.update);
 
 app.route(prefix + 'students/:id')
@@ -143,18 +158,7 @@ app.route(prefix + 'students/logout/:id')
   .get(studentRoutes.logout);
 
 
-app.route(prefix + 'professor/publications')
-  .post(professorPublicationRoutes.create)
-  .get(professorPublicationRoutes.getAll);
 
-app.route(prefix + 'professor/current-publication/:id')
-  .get(professorPublicationRoutes.getById);
-
-app.route(prefix + 'professor/publications/professors')
-  .get(professorPublicationRoutes.findByProfessorId);
-
-app.route(prefix + 'professor')
-  .get(professorRoutes.currentProfessor);
 
 
 const server = http.createServer(app);

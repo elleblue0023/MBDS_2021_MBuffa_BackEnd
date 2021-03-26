@@ -56,8 +56,7 @@ app.route(prefix + 'promotions')
 
 
 //Partie Professeur
-app.route(prefix + 'professors')
-  .post(professorRoutes.create)
+
 
 
 
@@ -71,7 +70,9 @@ app.route(prefix + 'professor/login')
 app.use(jwt.verify);
 
 app.route(prefix + 'professors')
-  .put(professorRoutes.update);
+  .put(professorRoutes.update)
+  .post(professorRoutes.create);
+
 
 app.route(prefix + 'professors')
   .get(professorRoutes.getAll);

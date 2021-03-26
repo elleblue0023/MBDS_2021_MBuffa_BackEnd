@@ -53,6 +53,22 @@ app.route(prefix + 'courses')
 
 app.route(prefix + 'promotions')
   .get(promotionRoutes.getAll);
+  
+app.route(prefix + 'courses/:id')
+  .get(courseRoutes.getById)
+  .delete(courseRoutes.delete);
+  
+app.route(prefix + 'courses')
+  .post(courseRoutes.create)
+  .put(courseRoutes.update);
+
+app.route(prefix + 'promotions/:id')
+  .get(promotionRoutes.getById)
+  .delete(promotionRoutes.delete);
+  
+app.route(prefix + 'promotions')
+  .post(promotionRoutes.create)
+  .put(promotionRoutes.update);
 /**--------------------------------------------
  *               PROFESSORS API
  *---------------------------------------------**/
@@ -64,9 +80,9 @@ app.route(prefix + 'students')
   .post(studentRoutes.create);
 
 
-app.use(jwt.verify);
 app.route(prefix + 'professor/login')
   .post(professorRoutes.login);
+app.use(jwt.verify);
 /**========================================================================
  *                          NEED TO TOKEN TO ACCESS 
  *========================================================================**/
@@ -87,22 +103,6 @@ app.route(prefix + 'professor/logout/:id')
 /**--------------------------------------------
  *               PROFESSORS API
  *---------------------------------------------**/
-app.route(prefix + 'courses/:id')
-  .get(courseRoutes.getById)
-  .delete(courseRoutes.delete);
-  
-app.route(prefix + 'courses')
-  .post(courseRoutes.create)
-  .put(courseRoutes.update);
-
-app.route(prefix + 'promotions/:id')
-  .get(promotionRoutes.getById)
-  .delete(promotionRoutes.delete);
-  
-app.route(prefix + 'promotions')
-  .post(promotionRoutes.create)
-  .put(promotionRoutes.update);
-
 app.route(prefix + 'professor/publications')
   .post(professorPublicationRoutes.create)
   .get(professorPublicationRoutes.getAll);

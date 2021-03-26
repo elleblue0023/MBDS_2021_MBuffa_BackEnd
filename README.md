@@ -22,10 +22,8 @@ Les packages installés sont disponible dans le packages.json
 
 ## Installation
 Faire un clone du projet depuis https://github.com/elleblue0023/MBDS_2021_MBuffa_BackEnd.git 
-Entrer dans le projet, puis lancer la commande
-```sh
-npm install
-```
+Entrer dans le projet, puis lancer la commande `npm install`.
+
 ### Accès local 
 => Le serveur est lancer par défaut dans le port 3001
 

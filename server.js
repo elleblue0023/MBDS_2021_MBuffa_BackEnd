@@ -63,8 +63,10 @@ app.route(prefix + 'professors')
 app.route(prefix + 'students')
   .post(studentRoutes.create);
 
-app.use(jwt.verify);
 
+app.use(jwt.verify);
+app.route(prefix + 'professor/login')
+  .post(professorRoutes.login);
 /**========================================================================
  *                          NEED TO TOKEN TO ACCESS 
  *========================================================================**/
@@ -80,8 +82,7 @@ app.route(prefix + 'professor/:id')
 app.route(prefix + 'professor/logout/:id')
   .get(professorRoutes.logout);
 
-app.route(prefix + 'professor/login')
-  .post(professorRoutes.login);
+
 
 /**--------------------------------------------
  *               PROFESSORS API

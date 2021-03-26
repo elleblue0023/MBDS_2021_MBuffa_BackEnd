@@ -49,14 +49,10 @@ app.use(cors());
  *               COURSE & PROMOTION API
  *---------------------------------------------**/
 app.route(prefix + 'courses')
-.get(utilsRoutes.getAllCourse);
-
-app.route(prefix + 'promotions')
-.get(utilsRoutes.getAllPromotion);
-
-app.route(prefix + 'courses')
 .get(courseRoutes.getAll);
 
+app.route(prefix + 'promotions')
+  .get(promotionRoutes.getAll);
 /**--------------------------------------------
  *               PROFESSORS API
  *---------------------------------------------**/
@@ -97,10 +93,6 @@ app.route(prefix + 'courses/:id')
 app.route(prefix + 'courses')
   .post(courseRoutes.create)
   .put(courseRoutes.update);
-
-//Partie Promotion
-app.route(prefix + 'promotions')
-  .get(promotionRoutes.getAll);
 
 app.route(prefix + 'promotions/:id')
   .get(promotionRoutes.getById)

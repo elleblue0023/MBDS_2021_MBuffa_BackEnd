@@ -1,5 +1,3 @@
-# MBDS_2021_MBuffa_BackEnd
-
 # Assignment Application API
 
 ## Fonctionnalités pris en charges

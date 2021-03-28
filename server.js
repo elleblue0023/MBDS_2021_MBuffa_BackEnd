@@ -82,9 +82,11 @@ app.route(prefix + 'students')
 
 app.route(prefix + 'professor/login')
   .post(professorRoutes.login);
-app.use(jwt.verify);
+
+  
+app.use(jwt.verify); // Function to verify token
 /**========================================================================
- *                          NEED TO TOKEN TO ACCESS 
+ *                          NEED TOKEN TO ACCESS 
  *========================================================================**/
 app.route(prefix + 'professors')
   .put(professorRoutes.update);

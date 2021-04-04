@@ -81,13 +81,15 @@ exports.getAll = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  professorSchema.findByIdAndUpdate(req.body.id, {
-    $set: req.body
-  }, (error, data) => {
+  professorSchema.findOneAndUpdate(
+    {_id: req.body.id}, 
+    {$set: req.body},
+    {new: true}, 
+    (error, data) => {
     if (error) {
       res.status(500).send({ message: 'Internal server error' });
     } else {
-      res.status(200).json({ message: "Professor has been updated" })
+      res.status(200).json({ message: "Professor has been updated", data: data })
     }
   })
 }

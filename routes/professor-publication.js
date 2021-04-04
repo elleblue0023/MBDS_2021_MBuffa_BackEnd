@@ -89,6 +89,7 @@ exports.findByProfessorId = (req, res) => {
   publicationSchema.find({
     professor: currentUser._id
   })
+  .sort({deadline: 1})
   .populate({
     path: "professor",
     match: {

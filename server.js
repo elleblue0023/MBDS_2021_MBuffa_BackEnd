@@ -107,7 +107,8 @@ app.route(prefix + 'professor/logout/:id')
  *---------------------------------------------**/
 app.route(prefix + 'professor/publications')
   .post(professorPublicationRoutes.create)
-  .get(professorPublicationRoutes.getAll);
+  .get(professorPublicationRoutes.getAll)
+  .put(professorPublicationRoutes.update);
 
 app.route(prefix + 'professor/current-publication/:id')
   .get(professorPublicationRoutes.getById);

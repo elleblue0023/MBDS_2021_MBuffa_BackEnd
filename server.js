@@ -83,6 +83,8 @@ app.route(prefix + 'students')
 app.route(prefix + 'professor/login')
   .post(professorRoutes.login);
 
+app.route(prefix + 'students/login')
+  .post(studentRoutes.login);
   
 app.use(jwt.verify); // Function to verify token
 /**========================================================================
@@ -143,15 +145,14 @@ app.route(prefix + 'students')
 app.route(prefix + 'students/:id')
   .get(studentRoutes.getById);
   
-app.route(prefix + 'students/login')
-  .post(studentRoutes.login);
-
-
 app.route(prefix + 'students')
   .get(studentRoutes.getAll);
 
 app.route(prefix + 'students/logout/:id')
   .get(studentRoutes.logout);
+
+app.route(prefix + 'student')
+  .get(studentRoutes.currentStudent);
 
 
 

@@ -121,6 +121,9 @@ app.route(prefix + 'professor/publications/professors')
 app.route(prefix + 'professor')
   .get(professorRoutes.currentProfessor);
 
+app.route(prefix + 'professor/publications/assignment/:promotion')
+  .get(professorPublicationRoutes.findByPromotion);
+
 /**--------------------------------------------
  *               ASSIGNMENTS API
  *---------------------------------------------**/

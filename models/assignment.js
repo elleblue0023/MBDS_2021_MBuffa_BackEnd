@@ -3,13 +3,13 @@ let Schema = mongoose.Schema;
 
 let assignmentSchema = Schema({
 	student: { type: Schema.Types.ObjectId, ref: 'Student'}, 
-	promotionName: String,
-	courseName: String,
+	publication: { type: Schema.Types.ObjectId, ref: 'Publication'}, 
 	note: Number,
-	projectUrl: String,
-    doneDate: Date,
-    name: String,
-    isDone: Boolean
+	remark: String,
+  doneDate: Date,
+  name: String,
+	depositUrl: String,
+  isMarked: Boolean
 },{
 	collection: 'assignment'
 });

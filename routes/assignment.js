@@ -1,15 +1,17 @@
-const assignmentSchema = require('../models/assignment');
+let assignmentSchema = require('../models/assignment');
+let jwt = require('../middlewares/verifyToken');
 
 exports.create = (req, res) => {
+    let currentUser = jwt.decode(req, res);
     let newAssignment = new assignmentSchema({
-        student: req.body.student,
-        promotionName: req.body.promotionName,
-        courseName: req.body.courseName,
+        student: currentUser._id,
+        publication: req.body.publicationid,
         note: req.body.note,
-        projectUrl: req.body.projectUrl,
+        remark: req.body.remark,
         doneDate: req.body.doneDate,
         name: req.body.name,
-        isDone: req.body.isDone
+        depositUrl: req.body.depositUrl,
+        isMarked: req.body.isMarked
     });
 
     newAssignment.save((error, data) => {
@@ -32,26 +34,51 @@ exports.getById = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
-    assignmentSchema.find({}, (error, data) => {
+    assignmentSchema.find()
+      .populate({
+        path: "publication"
+      })
+      .exec((error, data) => {
         if (error) {
-            res.status(500).send({ message: 'Internal server error'});
+          res.status(500).send({ message: 'Internal server error' });
         } else {
-            res.json(data);
+          res.status(200).json(data);
         }
-    })
-}
+      });
+  }
 
-exports.update = (req, res) => {
+  exports.update = (req, res) => {
     assignmentSchema.findByIdAndUpdate(req.body.id, {
-        $set: req.body
+      $set: req.body
     }, (error, data) => {
-        if (error) {
-            res.status(500).send({ message: 'Internal server error'});
-        } else {
-            res.status(200).json({message: "Assignment has been updated"})
-        }
+      if (error) {
+        res.status(500).send({ message: 'Internal server error' });
+      } else {
+        res.status(200).json({ message: "Assignment has been updated" })
+      }
     })
-}
+  }
+
+
+  exports.findByStudentId = (req, res) => {
+    let currentUser = jwt.decode(req, res);
+    assignmentSchema.find({
+      student: currentUser._id
+    })
+    .populate({
+      path: "student",
+      match: {
+        _id: currentUser._id
+      }
+    })
+    .exec((error, data) => {
+      if (error) {
+        res.status(500).send({ message: error.message });
+      } else {
+        res.status(200).json(data);
+      }
+    });
+  }
 
 exports.delete = (req, res) => {
     assignmentSchema.findByIdAndRemove(req.params.id, (error, assignment) => {

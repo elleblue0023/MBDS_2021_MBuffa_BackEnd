@@ -138,6 +138,9 @@ app.route(prefix + 'assignments')
   .post(assignmentRoutes.create)
   .put(assignmentRoutes.update);
 
+app.route(prefix + 'assignments/student')
+  .get(assignmentRoutes.findByStudentId);
+
 
 /**--------------------------------------------
  *               STUDENTS API

@@ -59,6 +59,7 @@ exports.update = (req, res) => {
   })
 }
 
+/*
 exports.findByPromotion = (req, res) => {
   publicationSchema.findById({
     professor: req.body.professor._id,
@@ -71,6 +72,7 @@ exports.findByPromotion = (req, res) => {
     }
   })
 }
+*/
 
 exports.findByCourse = (req, res) => {
   publicationSchema.findById({

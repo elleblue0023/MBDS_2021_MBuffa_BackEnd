@@ -3,6 +3,7 @@ let Schema = mongoose.Schema;
 
 let publicationSchema = Schema({
 	professor: { type: Schema.Types.ObjectId, ref: 'Professor' },
+	name: String, 
 	message: String,
 	promotionName: String,
 	courseName: String,

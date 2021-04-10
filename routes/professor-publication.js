@@ -5,6 +5,7 @@ exports.create = (req, res) => {
   let currentUser = jwt.decode(req, res);
   let newPublication = new publicationSchema({
     professor: currentUser._id,
+    name: req.body.name,
     message: req.body.message,
     promotionName: req.body.promotion,
     courseName: req.body.course,
@@ -58,6 +59,7 @@ exports.update = (req, res) => {
   })
 }
 
+/*
 exports.findByPromotion = (req, res) => {
   publicationSchema.findById({
     professor: req.body.professor._id,
@@ -70,6 +72,7 @@ exports.findByPromotion = (req, res) => {
     }
   })
 }
+*/
 
 exports.findByCourse = (req, res) => {
   publicationSchema.findById({
@@ -106,3 +109,20 @@ exports.findByProfessorId = (req, res) => {
   });
 }
 
+exports.findByPromotion = (req, res) => {
+  let currentUser = jwt.decode(req, res);
+  publicationSchema.find({
+    promotionName: req.params.promotion
+  })
+  .sort({deadline: 1})
+  .populate({
+    path: "professor"
+  })
+  .exec((error, data) => {
+    if (error) {
+      res.status(500).send({ message: error.message });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+}

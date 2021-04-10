@@ -138,7 +138,7 @@ app.route(prefix + 'assignments')
   .post(assignmentRoutes.create)
   .put(assignmentRoutes.update);
 
-app.route(prefix + 'assignments/student')
+app.route(prefix + 'assignments/student/list')
   .get(assignmentRoutes.findByStudentId);
 
 

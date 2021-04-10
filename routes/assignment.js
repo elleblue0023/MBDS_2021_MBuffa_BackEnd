@@ -71,6 +71,10 @@ exports.getAll = (req, res) => {
         _id: currentUser._id
       }
     })
+    .populate({
+      path: "publication",
+      populate: { path: 'professor' }
+    })
     .exec((error, data) => {
       if (error) {
         res.status(500).send({ message: error.message });

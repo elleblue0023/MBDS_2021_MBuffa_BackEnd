@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     deadline: req.body.deadline
   });
 
-  console.log(newPublication);
+  //console.log(newPublication);
 
   newPublication.save((error, data) => {
     if (error) {
@@ -86,10 +86,11 @@ exports.findByCourse = (req, res) => {
 
 exports.findByProfessorId = (req, res) => {
   let currentUser = jwt.decode(req, res);
+  
   publicationSchema.find({
     professor: currentUser._id
   })
-  .sort({deadline: 1})
+  .sort({deadline: -1})
   .populate({
     path: "professor",
     match: {

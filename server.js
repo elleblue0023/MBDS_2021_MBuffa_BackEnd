@@ -160,8 +160,8 @@ app.route(prefix + 'student')
 
 const server = http.createServer(app);
 server.listen(port, function () {
-  console.log("===================================")
-  console.log("   Server is running on port 3001");
-  console.log("===================================");
+  console.log("=====================================================")
+  console.log("   Server is running on port 3001 : " + dbConfig.db);
+  console.log("=====================================================");
 })
 module.exports = app;

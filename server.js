@@ -141,7 +141,8 @@ app.route(prefix + 'assignments')
 app.route(prefix + 'assignments/student/list')
   .get(assignmentRoutes.findByStudentId);
 
-
+app.route(prefix + 'assignments/student/publication/:idPublication')
+  .get(assignmentRoutes.findByPublicationId);
 /**--------------------------------------------
  *               STUDENTS API
  *---------------------------------------------**/

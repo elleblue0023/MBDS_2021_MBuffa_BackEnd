@@ -1,6 +1,5 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let crypto = require('crypto');
 
 let studentSchema = Schema({
 	lastname: String,

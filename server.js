@@ -161,7 +161,8 @@ app.route(prefix + 'students/logout/:id')
 app.route(prefix + 'student')
   .get(studentRoutes.currentStudent);
 
-
+app.route(prefix + 'students/promotion/list/:promotionName')
+  .get(studentRoutes.getByPromotion);
 
 
 

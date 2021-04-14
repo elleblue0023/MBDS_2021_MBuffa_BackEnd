@@ -87,6 +87,28 @@ exports.findByCourse = (req, res) => {
   })
 }
 
+exports.getPublicationsByPromotion = async function (req, res) {
+  await getPublicationsByPromotionPaged(req,res);
+}
+
+function getPublicationsByPromotionPaged(req,res) {
+
+  let query = { promotionName: { $regex: new RegExp(req.params.promotion), $options: "i" } };
+
+  let options = {
+      page: parseInt(req.query.page) || 1,
+      limit: parseInt(req.query.limit) || 2,
+      populate: ['professor'],
+  };
+  return publicationSchema.paginate(query, options, function (err, result) {
+    if (err) {
+      res.status(500).send({ message: err.message });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+}
+
 exports.findByProfessorId = (req, res) => {
   let currentUser = jwt.decode(req, res);
   
@@ -105,6 +127,33 @@ exports.findByProfessorId = (req, res) => {
       res.status(500).send({ message: error.message });
     } else {
       res.status(200).json(data);
+    }
+  });
+}
+
+exports.getPublicationsProfessorId = async function (req, res) {
+  console.log('go');
+  await getPublicationsProfessorIdPaged(req,res);
+}
+
+function getPublicationsProfessorIdPaged(req,res) {
+  let currentUser = jwt.decode(req, res);
+  console.log('go');
+
+  let query = { professor: currentUser._id };
+  console.log(query);
+
+  let options = {
+      page: parseInt(req.query.page) || 1,
+      limit: parseInt(req.query.limit) || 2,
+      populate: ['professor'],
+  };
+  return publicationSchema.paginate(query, options, function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ message: err.message });
+    } else {
+      res.status(200).json(result);
     }
   });
 }

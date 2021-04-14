@@ -118,11 +118,17 @@ app.route(prefix + 'professor/current-publication/:id')
 app.route(prefix + 'professor/publications/professors')
   .get(professorPublicationRoutes.findByProfessorId);
 
+app.route(prefix + 'professor/publications/professors/listpaged')
+  .get(professorPublicationRoutes.getPublicationsProfessorId);
+
 app.route(prefix + 'professor')
   .get(professorRoutes.currentProfessor);
 
 app.route(prefix + 'professor/publications/assignment/:promotion')
   .get(professorPublicationRoutes.findByPromotion);
+
+app.route(prefix + 'professor/publications/assignment/listpaged/:promotion')
+  .get(professorPublicationRoutes.getPublicationsByPromotion);
 
 /**--------------------------------------------
  *               ASSIGNMENTS API
